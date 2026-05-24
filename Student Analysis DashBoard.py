@@ -18,7 +18,7 @@ plt.scatter(cluster_1['Attendance'],cluster_1['Marks'],label='2nd Cluster',color
 plt.scatter(cluster_2['Attendance'],cluster_2['Marks'],label='3rd Cluster',color='green')
 plt.xlabel("Attendance")
 plt.ylabel("Marks")
-plt.title('Clustering')
+plt.title('Clustering',loc='center')
 plt.legend()
 
 
@@ -33,8 +33,8 @@ y=df['Marks']
 l_model=linear_model.LinearRegression()
 l_model.fit(x,y)
 plt.subplot(1,3,3)
-plt.plot(x,l_model.predict(x),label="Regression Line")
+plt.plot(x,l_model.predict(x),label='Regression Line')
 plt.xlabel("Attendance")
 plt.ylabel("Marks")
-plt.title('Relation Between Attendance and Marks')
+plt.title('Relation Between Attendance and Marks',loc='center')
 plt.show()

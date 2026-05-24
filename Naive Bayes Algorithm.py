@@ -33,10 +33,11 @@ def Vocab():
     for doc in df['Doc']:
         for word in doc.split():
             t_words.append(word)
-        for unique_words in t_words:
-            unique_words=list(set(t_words))
-        
-    print(len(t_words), len(unique_words))
+    for Class in df['class']:
+        if Class=='sci':
+            sci_word.extend(t_words)
+    unique_words=list(set(t_words))
+    print(len(t_words), len(unique_words), len(sci_word))
 def main():
     sol1,sol2,sol3=prior_probabilities()
     # print(sol1,sol2,sol3)

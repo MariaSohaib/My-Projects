@@ -29,19 +29,37 @@ def prior_probabilities():
     return prob_science, prob_art, prob_com
 def Vocab():
     t_words=[]
-    sci_word=[]
     for doc in df['Doc']:
         for word in doc.split():
             t_words.append(word)
+    unique_words=list(set(t_words))
+    return len(t_words), len(unique_words)
+def SCI_CLASS():
+    sci_word=[]
     sci_class=df.query("Class=='sci'")
     for docs in sci_class['Doc']:
         for words in docs.split():
             sci_word.append(words)
-    unique_words=list(set(t_words))
-    print(len(t_words), len(unique_words), len(sci_word))
+    return len(sci_word)
+def ART_CLASS():
+    art_word=[]
+    art_class=df.query("Class=='art'")
+    for Doc in art_class['Doc']:
+        for Word in Doc.split():
+            art_word.append(Word)
+    return len(art_word)
+def COM_CLASS():
+    com_word=[]
+    com_class=df.query("Class=='com'")
+    for DoC in com_class['Doc']:
+        for Words in DoC.split():
+            com_word.append(Words)
+    return len(com_word)
 def main():
-    sol1,sol2,sol3=prior_probabilities()
-    # print(sol1,sol2,sol3)
-    Vocab()
+    a,b=Vocab()
+    c=SCI_CLASS()
+    d=ART_CLASS()
+    e=COM_CLASS()
+    print(a,b,c,d,e)
 if __name__=='__main__':
     main()

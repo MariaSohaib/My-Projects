@@ -34,13 +34,6 @@ def Vocab():
             t_words.append(word)
     unique_words=list(set(t_words))
     return len(t_words), len(unique_words)
-def ART_CLASS():
-    art_word=[]
-    art_class=df.query("Class=='art'")
-    for Doc in art_class['Doc']:
-        for Word in Doc.split():
-            art_word.append(Word)
-    return len(art_word),set(art_word)
 def COM_CLASS():
     com_word=[]
     com_class=df.query("Class=='com'")
@@ -48,7 +41,7 @@ def COM_CLASS():
         for Words in DoC.split():
             com_word.append(Words)
     return len(com_word)
-def Sub_in_SciClass():
+def sub_in_SciClass():
     sci_word=[]
     Bio=[]
     mat=[]
@@ -95,15 +88,67 @@ def Sub_in_SciClass():
     Environment=len(env)
     Economy=len(eco)
     return Science,Biology,Math,English,Physics,Chemistry,Statistic,Islamiyat,Environment,Economy
-# def sub_in_ArtClass():
-
+def sub_in_ArtClass():
+    lit=[]
+    psy=[]
+    urdu=[]
+    fine_art=[]
+    art=[]
+    isl=[]
+    civ=[]
+    pak_std=[]
+    eng=[]
+    geo=[]
+    acc=[]
+    eco=[]
+    hist=[]
+    art_word=[]
+    art_class=df.query("Class=='art'")
+    for Doc in art_class['Doc']:
+        for sub in Doc.split():
+            art_word.append(sub)
+            if sub=='lit':
+                lit.append(sub)
+            elif sub=='psy':
+                psy.append(sub)
+            elif sub=='eng':
+                eng.append(sub)
+            elif sub=='urdu':
+                urdu.append(sub)
+            elif sub=='fine-art':
+                fine_art.append(sub)
+            elif sub=='civics':
+                civ.append(sub)
+            elif sub=='pak-std':
+                pak_std.append(sub)
+            elif sub=='isl':
+                isl.append(sub)
+            elif sub=='art':
+                art.append(sub)
+            elif sub=='geo':
+                geo.append(sub)
+            elif sub=='acc':
+                acc.append(sub)
+            elif sub=='eco':
+                eco.append(sub)
+            elif sub=='hist':
+                hist.append(sub)
+    Arts=len(art_word)
+    liter=len(lit)
+    psyco=len(psy)
+    ur=len(urdu)
+    f_art=len(fine_art)
+    Art=len(art)
+    islam=len(isl)
+    civics=len(civ)
+    pk=len(pak_std)
+    Eng=len(eng)
+    Geo=len(geo)
+    accoun=len(acc)
+    econ=len(eco)
+    history=len(hist)
+    return Arts,liter,psyco,ur,f_art,Art,islam,civics,pk,Eng,Geo,accoun,eco,history
 def main():
-    a,b=Vocab()
-    # d=ART_CLASS()
-    # e=COM_CLASS()
-    # print(a,b,c,d,e)
-    Sub_in_SciClass()
-    x,y=ART_CLASS()
-    print(x,y)
+    print("hello")
 if __name__=='__main__':
     main()

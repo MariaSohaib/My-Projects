@@ -5,7 +5,7 @@ def prior():
     science=[]
     arts=[]
     commerce=[]
-    for class1 in df['class']:
+    for class1 in df['Class']:
         total.append(class1)
     for sci_class in total:
         if sci_class=='sci':
@@ -33,9 +33,10 @@ def Vocab():
     for doc in df['Doc']:
         for word in doc.split():
             t_words.append(word)
-    for Class in df['class']:
-        if Class=='sci':
-            sci_word.extend(t_words)
+    sci_class=df.query("Class=='sci'")
+    for docs in sci_class['Doc']:
+        for words in docs.split():
+            sci_word.append(words)
     unique_words=list(set(t_words))
     print(len(t_words), len(unique_words), len(sci_word))
 def main():

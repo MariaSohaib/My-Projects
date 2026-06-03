@@ -34,13 +34,6 @@ def Vocab():
             t_words.append(word)
     unique_words=list(set(t_words))
     return len(t_words), len(unique_words)
-def COM_CLASS():
-    com_word=[]
-    com_class=df.query("Class=='com'")
-    for DoC in com_class['Doc']:
-        for Words in DoC.split():
-            com_word.append(Words)
-    return len(com_word)
 def sub_in_SciClass():
     sci_word=[]
     Bio=[]
@@ -148,6 +141,42 @@ def sub_in_ArtClass():
     econ=len(eco)
     history=len(hist)
     return Arts,liter,psyco,ur,f_art,Art,islam,civics,pk,Eng,Geo,accoun,eco,history
+def sub_in_ComClass():
+    com_word=[]
+    stats=[]
+    math=[]
+    phy=[]
+    acc=[]
+    biz=[]
+    law=[]
+    eco=[]
+    com_class=df.query("Class=='com'")
+    for docs in com_class['Doc']:
+        for sub in docs.split():
+            com_word.append(sub)
+            if sub=='stats':
+                stats.append(sub)
+            elif sub=='math':
+                math.append(sub)
+            elif sub=='phy':
+                phy.append(sub)
+            elif sub=='acc':
+                acc.append(sub)
+            elif sub=='biz':
+                biz.append(sub)
+            elif sub=='law':
+                law.append(sub)
+            elif sub=='eco':
+                eco.append(sub)
+    Commerce=len(com_word)
+    Stats=len(stats)
+    Math=len(math)
+    Phy=len(phy)
+    Acc=len(acc)
+    Biz=len(biz)
+    Law=len(law)
+    Eco=len(eco)
+    return Commerce,Stats,Math,Phy,Acc,Biz,Law,Eco
 def main():
     print("hello")
 if __name__=='__main__':

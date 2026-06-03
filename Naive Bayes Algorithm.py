@@ -78,9 +78,10 @@ def sub_in_SciClass():
     Chemistry=len(chem)
     Statistic=len(stat)
     Islamiyat=len(isl)
+    Computer=len(comp)
     Environment=len(env)
     Economy=len(eco)
-    return Science,Biology,Math,English,Physics,Chemistry,Statistic,Islamiyat,Environment,Economy
+    return Science,Biology,Math,English,Physics,Chemistry,Statistic,Computer,Islamiyat,Environment,Economy
 def sub_in_ArtClass():
     lit=[]
     psy=[]
@@ -140,7 +141,7 @@ def sub_in_ArtClass():
     accoun=len(acc)
     econ=len(eco)
     history=len(hist)
-    return Arts,liter,psyco,ur,f_art,Art,islam,civics,pk,Eng,Geo,accoun,eco,history
+    return Arts,liter,psyco,ur,f_art,Art,islam,civics,pk,Eng,Geo,accoun,econ,history
 def sub_in_ComClass():
     com_word=[]
     stats=[]
@@ -177,7 +178,53 @@ def sub_in_ComClass():
     Law=len(law)
     Eco=len(eco)
     return Commerce,Stats,Math,Phy,Acc,Biz,Law,Eco
+def Conditional_prob_Sci():
+    sci,bio,math,eng,phy,chem,stat,comp,isl,env,eco=sub_in_SciClass()
+    prob_bio=float((bio+1)/sci)
+    prob_math=float((math+1)/sci)
+    prob_eng=float((eng+1)/sci)
+    prob_phy=float((phy+1)/sci)
+    prob_chem=float((chem+1)/sci)
+    prob_stat=float((stat+1)/sci)
+    prob_comp=float((comp+1)/sci)
+    prob_isl=float((isl+1)/sci)
+    prob_env=float((env+1)/sci)
+    prob_eco=float((eco+1)/sci)
+    Science=(prob_bio*prob_chem)*(prob_comp*prob_eco)*(prob_math*prob_eng)*(prob_env*prob_phy)*(prob_isl*prob_stat)
+    return Science
+def Conditional_prob_Art():
+    arts,lit,psy,urdu,fine_art,art,isl,civ,pk,eng,geo,acc,eco,hist=sub_in_ArtClass()
+    prob_lit=float((lit+1)/arts)
+    prob_psy=float((psy+1)/arts)
+    prob_urdu=float((urdu+1)/arts)
+    prob_fine_art=float((fine_art+1)/arts)
+    prob_art=float((art+1)/arts)
+    prob_isl=float((isl+1)/arts)
+    prob_civ=float((civ+1)/arts)
+    prob_pk=float((pk+1)/arts)
+    prob_eng=float((eng+1)/arts)
+    prob_geo=float((geo+1)/arts)
+    prob_acc=float((acc+1)/arts)
+    prob_eco=float((eco+1)/arts)
+    prob_hist=float((hist+1)/arts)
+    Arts=(prob_acc*prob_art)*(prob_civ*prob_eco)*(prob_eng*prob_geo)*(prob_fine_art*prob_hist)*(prob_lit*prob_urdu)*(prob_psy*prob_isl)*prob_pk
+    return Arts
+def Conditional_prob_Commerce():
+    Commerce,Stats,math,phy,acc,biz,law,eco=sub_in_ComClass()
+    prob_Stats=float((Stats+1)/Commerce)
+    prob_math=float((math+1)/Commerce)
+    prob_phy=float((phy+1)/Commerce)
+    prob_acc=float((acc+1)/Commerce)
+    prob_biz=float((biz+1)/Commerce)
+    prob_law=float((law+1)/Commerce)
+    prob_eco=float((eco+1)/Commerce)
+    Comm=(prob_math*prob_Stats)*(prob_phy*prob_acc)*(prob_biz*prob_law)*prob_eco
+    return Comm
 def main():
-    print("hello")
+    Science=Conditional_prob_Sci()
+    Art=Conditional_prob_Art()
+    Commerce=Conditional_prob_Commerce()
+    prior_sci,prior_art,prior_com=prior_probabilities()
+    print(Science*prior_sci,Art*prior_art,Commerce*prior_com)
 if __name__=='__main__':
     main()
